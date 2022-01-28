@@ -1,0 +1,17 @@
+version: "3"
+services:
+  worker_manager:
+    image: worker_manager
+    command: python worker_manager.py
+    ports: 
+      - 8000:8000
+  prometheus:
+    image: prom/prometheus
+    ports:
+     - 9090:9090
+    volumes:
+      - ./config/prometheus:/etc/prometheus/
+  graphana:
+    image: grafana/grafana-oss
+    ports:
+      - 3000:3000
